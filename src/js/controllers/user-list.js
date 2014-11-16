@@ -1,19 +1,26 @@
 /** @ngInject */
-function UserListController($state, users, User, UserService) {
+function UserListController($state, users, User, UserCreateCommand, UserDeleteCommand, UndoService) {
 
     this.users = users;
 
     this.undo = function() {
-        // TODO
+        UndoService.undo().then(function() {
+            $state.reload();
+        });
     };
 
     this.redo = function() {
-        // TODO
+
+        UndoService.redo().then(function() {
+            $state.reload();
+        });
     };
 
     this.removeUser = function(user) {
 
-        UserService.remove(user).then(function() {
+        var deleteCommand = new UserDeleteCommand(user);
+
+        UndoService.executeCommand(deleteCommand).then(function() {
             $state.reload();
         });
     };
@@ -24,7 +31,9 @@ function UserListController($state, users, User, UserService) {
             username: 'Gouzigouza' + (new Date().getTime())
         });
 
-        UserService.save(user).then(function() {
+        var createCommand = new UserCreateCommand(user);
+
+        UndoService.executeCommand(createCommand).then(function() {
             $state.reload();
         });
     };

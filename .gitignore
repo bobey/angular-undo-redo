@@ -1,0 +1,11 @@
+# App
+public
+
+# Vendors
+node_modules
+bower_components
+.bower
+
+# IDE
+.idea
+nbproject

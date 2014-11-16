@@ -1,0 +1,15 @@
+{
+  "name": "undo",
+  "version": "0.1.0",
+  "description": "An undo / redo proof of concept with AngularJS and Command Pattern",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bobey/angular-undo-redo.git"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-copy": "^0.7.0",
+    "grunt-ng-annotate": "^0.6.0"
+  }
+}

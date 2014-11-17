@@ -15,4 +15,4 @@ bower install
 grunt
 ```
 
-And open `public/index.html`
+And open `public/index.html`. That's it!

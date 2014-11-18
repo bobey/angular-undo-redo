@@ -6,7 +6,11 @@ This repository shows how to implement an undo/redo functionality in an AngularJ
 
 This is code support for an article on my blog: [http://blog.overnetcity.com](http://blog.overnetcity.com/2014/11/20/undo-redo-angularjs-command-pattern/)
 
-## Try it!
+## Try it online!
+
+[Angular Undo / redo demo](http://bobey.github.io/angular-undo-redo)
+
+## Fork it!
 
 ```
 git clone https://github.com/bobey/angular-undo-redo.git && cd angular-undo-redo

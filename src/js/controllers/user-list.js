@@ -3,17 +3,21 @@ function UserListController($state, users, User, UserCreateCommand, UserDeleteCo
 
     this.users = users;
 
+    var stateReload = function() {
+        $state.reload();
+    };
+
     this.undo = function() {
-        UndoService.undo().then($state.reload);
+        UndoService.undo().then(stateReload);
     };
 
     this.redo = function() {
 
-        UndoService.redo().then($state.reload);
+        UndoService.redo().then(stateReload);
     };
 
     this.removeUser = function(user) {
-        UndoService.executeCommand(new UserDeleteCommand(user)).then($state.reload);
+        UndoService.executeCommand(new UserDeleteCommand(user)).then(stateReload);
     };
 
     this.addUser = function() {
@@ -21,7 +25,7 @@ function UserListController($state, users, User, UserCreateCommand, UserDeleteCo
         var user = new User({
             username: 'Gouzigouza' + (new Date().getTime())
         });
-        UndoService.executeCommand(new UserCreateCommand(user)).then($state.reload);
+        UndoService.executeCommand(new UserCreateCommand(user)).then(stateReload);
     };
 }
 

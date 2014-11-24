@@ -7,6 +7,14 @@ function UndoService ($q) {
         redos: []
     };
 
+    var executeCommand = function(command) {
+        return command.execute().then(function(data) {
+            UndoService.undos.push(command);
+
+            return data;
+        });
+    };
+
     UndoService.undo = function() {
 
         if (!UndoService.undos.length) {
@@ -34,22 +42,12 @@ function UndoService ($q) {
             return deferred.promise;
         }
 
-        var command = UndoService.redos.pop();
-
-        return command.execute().then(function(data) {
-            UndoService.undos.push(command);
-
-            return data;
-        });
+        return executeCommand(UndoService.redos.pop());
     };
 
     UndoService.executeCommand = function(command) {
         UndoService.redos = [];
-        return command.execute().then(function(data) {
-            UndoService.undos.push(command);
-
-            return data;
-        });
+        return executeCommand(command);
     };
 
     return UndoService;
